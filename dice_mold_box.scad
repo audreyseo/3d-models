@@ -123,11 +123,11 @@ module base() {
         base_top();
         proportions = [0.175, 0.5, 0.825];
         w_proportion = 0.25;
-        for (i=proportions){
-            portion = i; // * 0.25;
-            translate([l * portion, w * w_proportion, 3]) disc();
-            translate([l * portion, w * (1 - w_proportion), 3]) disc();
-        }
+//        for (i=proportions){
+//            portion = i; // * 0.25;
+//            translate([l * portion, w * w_proportion, 3]) disc();
+//            translate([l * portion, w * (1 - w_proportion), 3]) disc();
+//        }
         for (i=[0, 1]) {
             x_coord = proportions[i] + 0.5 * (proportions[i + 1] - proportions[i]);
             translate([l * x_coord, w - thickness, thickness]) cube(thickness);
@@ -136,7 +136,7 @@ module base() {
     }
 }
 
-//base();
+base();
 
 module side() {
     difference() {
@@ -150,12 +150,41 @@ module side() {
         base_top();
     }
 }
+module hemisphere(r=2.5, fidelity=100) {
+    difference() {
+       sphere(r=r, $fn=fidelity);
+       translate([-r, -r, -2 * r]) cube([r * 2, r * 2, r * 2]);
+    }
+}
 
+//hemisphere_size = 4;
+//translate([0, 0, 0 * thickness]) {
+//    
+//    proportions = [0.175, 0.5, 0.825];
+//    w_proportion = 0.25;
+////        for (i=proportions){
+////            portion = i; // * 0.25;
+////            translate([l * portion, w * w_proportion, 3]) disc();
+////            translate([l * portion, w * (1 - w_proportion), 3]) disc();
+////        }
+//    for (i=[0, 1]) {
+//        x_coord = proportions[i] + 0.5 * (proportions[i + 1] - proportions[i]);
+//        translate([l * x_coord, w - hemisphere_size, thickness]) hemisphere(r=hemisphere_size);
+//        translate([l * x_coord + (i * 2 - 1) * 2 * hemisphere_size, hemisphere_size, thickness]) hemisphere(r=hemisphere_size);
+//    }
+////    hemisphere();
+//}
+//
+//translate([0, 0, thickness * 1]) {
+//    translate([l * 0.5, w * 0.5, 0]) hemisphere(5);
+//    translate([5, w - 5 - 5, 0]) hemisphere(5);
+//    translate([l - 5, 5, 0]) hemisphere(5);
+//    translate([6, 6 + 6, 0]) hemisphere(6);
+//    translate([l - 6, w - 6, 0]) hemisphere(6);
+//}
+//cube([l, w, thickness * 0.5]);
 
-
-
-
-side();
+//side();
 //translate([l, w, 0]) rotate([0, 0, 180]) side();
 
 //translate([l * 0.25, w * 0.33, 0]) disc();

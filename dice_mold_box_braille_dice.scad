@@ -1,7 +1,5 @@
 include <braille_dice.scad>
 
-//rotate([9, 4.5, 0]) translate([-40, -40, 10]) d20();
-
 module braille_dice() {
     rotate([10.5, 0.3, 0]) translate([4, 4, 5]) d20();
 
@@ -22,24 +20,8 @@ module braille_dice() {
     translate([90, 57, 21]) rotate([42.5, 0, 0]) rotate([0, 20, 0]) d10();
 }
 
-//d10x = 27.99;
-//d10y = 29.15;
-//d10z = 28.1;
-//translate([d10x * -0.5, d10y * -0.5, d10z * -0.5]) d10();
-//centeredCube(x=d10x, y=d10y, z=d10z) cube([d10x, d10y, d10z]);
+//braille_dice();
 
-
-braille_dice();
-
-//d8width = 32.77;
-//d8height = 23.53;
-//
-//translate([-d8height * 0.5, d8width * -0.5, d8height * -0.5]) d8();
-//translate([-d8height * 0.5, d8width * -0.5, d8height * -0.5]) cube([d8height, d8width, d8height]);
-
-//translate([d6_width * -0.5, d6_width * -0.5, d6_width * -0.5]) d6();
-//cube(d6_width * 0.5);
-//rotate([90, 180, 0]) cube(d6_width * 0.5);
 
 function inch_to_mm(inches) = inches / 2 * 2.5 * 10;
 
@@ -124,19 +106,42 @@ module side() {
         }
         union() {
             // inset place for the base to go
-            base_top();
+            translate([- (l + thickness) * .001, - (w + thickness) * .001, - (.5 * thickness)* .0001]) scale([1.001, 1.001, 1.001]) base_top();
             // this is the bit of the puzzle piece that is fit into
             scale([1, 1, 1.1]) translate([l - thickness * 0.1, w * 0.5 - thickness * 0.5, -1]) cube([thickness * 0.8, thickness * 0.6, h]);
         }
     }
 }
 
+module base_discs_only() {
+    difference() {
+        union() {
+                proportions = [0.175]; 
+//            , 0.5, 0.825];
+            w_proportion = 0.25;
+            for (i=proportions){
+                portion = i; // * 0.25;
+                translate([l * portion, w * w_proportion, 3]) disc();
+//                translate([l * portion, w * (1 - w_proportion), 3]) disc();
+            }
+        }
+        cube([l, w, thickness]);
+        base_top();
+        
+//        for (i=[0, 1]) {
+//            x_coord = proportions[i] + 0.5 * (proportions[i + 1] - proportions[i]);
+//            translate([l * x_coord, w - thickness, thickness]) cube(thickness);
+//            translate([l * x_coord, 0, thickness]) cube(thickness);
+//        }
+    }
+}
 
+//base_discs_only();
 
+base();
 
-
-side();
-translate([l, w + 1, 0]) rotate([0, 0, 180]) side();
+//side();
+//#translate([l, w, 0]) rotate([0, 0, 180]) side();
 
 //translate([l * 0.25, w * 0.33, 0]) disc();
 
