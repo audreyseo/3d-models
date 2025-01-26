@@ -1,2 +1,8 @@
 *.stl
 .DS_Store
+*.blend1
+*.lys
+*.blend
+__pycache__
+*autosave
+*.gcode
