@@ -1,3 +1,11 @@
+/*
+ * Modules for hinged boxes of a given size.
+ * It would be nice if this was a fully parametrized model,
+ * but for now, just changing the values of x, y, thickness,
+ * and height directly in the code suffices.  
+*/
+
+
 
 // Print bed size: 250mm x, 210mm y
 //cube([250, 210, 1]);
@@ -9,11 +17,12 @@
 function inch_to_mm(inches) = inches * 25.4;
 
 // Teeny dimensions
-x = inch_to_mm(3);
-y = inch_to_mm((7 / 8.2) * 3);
+//x = inch_to_mm(3);
+//y = inch_to_mm((7 / 8.2) * 3);
 
-//x = inch_to_mm(8.2);
-//y = inch_to_mm(7);
+// Larger dimensions
+x = inch_to_mm(8.2);
+y = inch_to_mm(7);
 thickness = 3;
 height = inch_to_mm(1) + thickness;
 
@@ -132,6 +141,10 @@ module open_box_top() {
     translate([-x * 0.5, y * 0.5, height * 0.5]) rotate([0, 0, 180]) translate([-x * 0.5, -y * 0.5, -height * 0.5]) box_top();
 }
 
+
+
+// Commented out these book charkha components. That's what the hinged box was originally for.
+/*
 module bearing_block() {
     import_book_charkha_file("Bearing_Block_3mm_hole.stl");
 }
@@ -161,7 +174,10 @@ module spindle_holder_top() {
 #translate([51, 49, 0]) small_pulley();
 #translate([-120, 120, 0]) spindle_holder_bottom();
 translate([-120, 147.5, 6.9]) translate([0, 0, 47.19 * 0.5]) rotate([0, 270, 90]) spindle_holder_top();
-    
+*/
+
+
+
 //
 //latcher();
 //import("hinged_box_hinge.stl");
