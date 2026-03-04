@@ -6,7 +6,7 @@ include <braille_helpers.scad>;
 
 
 shrink = 0.99;
-#translate([0, 4, 0]) scale([1, shrink * 0.9, 1]) scale([.5, .5, 0.4]) import("/Users/audrey/Personal/3d_models/stormlight_glyphs/PI3MK3M_Windrunners.stl");
+#translate([0, 4, 0]) scale([1, shrink * 0.9, 1]) scale([.5, .5, 0.4]) import("/Users/audrey/Personal/3d_models/stormlight_glyphs/Windrunners_centered.stl");
 
 make_coin_disc();
 
