@@ -1,10 +1,10 @@
 module sock() {
-    import("/Users/audrey/Personal/3d_models/SockBlockerSmall/files/sockblocker_small.stl");
+    import("SockBlockerMedium/files/sockblock_medium_geometric_v1.stl");
 }
 h = 4.76;
-l1 = 85;
-l2 = 28.5;
-d = 95;
+l1 = 103;
+l2 = 22.6;
+d = 125;
 d1 = 4;
 module other() {
     difference() {
@@ -19,21 +19,18 @@ module other() {
     }
 }
 
-//translate([17, l1 + l2 + l2, -0.5]) cube([4, 4, h * 0.66 + 0.5]);
-//#translate([d, l1 + l2 + l2 - d1, -0.5]) cube([4, d1, h * 0.66 + 0.5]);
-
 //sock();
 //
 //other();
 //
 //translate([d, l1 + l2 + l2 - 50, -0.5]) cube([50, d1, h * 0.66 + 0.5]);
 
-difference() {
-    sock();
-    other();
-}
-
-//intersection() {
+//difference() {
 //    sock();
 //    other();
 //}
+
+intersection() {
+    sock();
+    other();
+}
